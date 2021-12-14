@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Tour Management Tour Editing!</title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+    </head>
+    <body>
+        <ul class="navbar">
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/timeline">Timeline</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/tour"class="active">Tours</a></li>
+            {% if username %}<li><a href="/account" class="right">Hey {{ username }}! / Account Settings</a></li>{% endif %}
+            {% if username %}<li><a href="/logout" class="right">Logout</a></li>{% endif %}
+        </ul>
+        {% if success %}
+        <div class="success">
+            <p style="font-size:32px;"><h3><strong>Success</strong></h3><p>{{ success }}</p></p>
+        </div>
+        {% endif %}
+        {% if info %}
+        <div class="info">
+            <p style="font-size:32px;"><h3><strong>Information</strong></h3><p>{{ info }}</p></p>
+        </div>
+        {% endif %}
+        <p style="font-size: 32px;">Manage your tour here.</p>
+        {% if tour %}
+            <h1>Tour Name: {{ tour.name }}</h1>
+            <h2>ID: {{ tour.id }}</h2>
+            <h2>~{{ tour.user }}</h2>
+            <p>Description: {{ tour.description }}</p>
+        {% endif %}
+        <p style="font-size: 32px;">Edit tour details. Leave field blank if you want it to be unchanged.</p>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="text" placeholder="New Tour Name" name="name" value="{{request.form.name }}"><br>
+            <textarea name="description" placeholder="New Tour Description" value="{{request.form.description }}"></textarea><br>
+            <input type="password" class = "long" placeholder="Type your password to delete this tour" name="password" value="{{request.form.password }}"><br>
+            <input class="btn btn-default" type="submit" value="Edit Tour" name='button'>
+        </form>
+    </body>
+</html>
